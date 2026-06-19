@@ -26,9 +26,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru di HP */
         }
-
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -39,22 +38,12 @@
             position: relative;
         }
 
-
+        /* Fix: Pastikan body bisa discroll */
         body.noscroll {
             overflow: hidden;
         }
 
-        h1 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--deep-rose);
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--deep-rose);
-        }
-
-        h3 {
+        h1, h2, h3 {
             font-family: 'Dancing Script', cursive;
             color: var(--deep-rose);
         }
@@ -86,13 +75,15 @@
             width: 100%;
             min-height: 100vh;
             position: relative;
-            
+            /* Fix: Pastikan scroll bekerja */
             overflow-y: auto; 
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
         }
 
-        
+        /* =========================================
+           2. LOADING SCREEN
+           ========================================= */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -143,7 +134,9 @@
             to { opacity: 1; transform: scale(1.1); }
         }
 
-        
+        /* =========================================
+           3. INTRO SECTION
+           ========================================= */
         #intro-section {
             position: fixed;
             top: 0;
@@ -158,7 +151,7 @@
             background: rgba(0,0,0,0.8);
             color: var(--white);
             text-align: center;
-            padding: 20px 20px 120px 20px; 
+            padding: 20px 20px 120px 20px; /* Tambah padding bawah untuk jaga tombol */
         }
 
         .blur-bg {
@@ -167,7 +160,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('Foto/background03.jpg'); 
+            background-image: url('Foto/background03.jpg'); /* GANTI URL FOTO DISINI */
             background-size: cover;
             background-position: center;
             filter: blur(10px);
@@ -177,16 +170,16 @@
 
         .intro-text-box {
             max-width: 95%;
-            font-size: 1.1rem; 
+            font-size: 1.1rem; /* Fix: Ukuran font sedikit disesuaikan */
             line-height: 1.6;
             margin-bottom: 20px;
-            
+            /* Fix: Tambah max-height agar teks panjang tidak menabrak tombol di bawah */
             max-height: 60vh;
             overflow-y: auto;
-            scrollbar-width: none; 
+            scrollbar-width: none; /* Firefox */
         }
         .intro-text-box::-webkit-scrollbar {
-            display: none; 
+            display: none; /* Chrome/Safari */
         }
 
         #btn-intro-next {
@@ -204,15 +197,17 @@
             font-family: 'Poppins', sans-serif;
             box-shadow: 0 5px 15px rgba(224, 108, 117, 0.4);
             transition: transform 0.2s;
-            z-index: 100; 
-            pointer-events: auto; 
+            z-index: 100; /* Pastikan di atas teks */
+            pointer-events: auto; /* Fix: Pastikan bisa diklik */
         }
 
         #btn-intro-next:active {
             transform: translateX(-50%) scale(0.95);
         }
 
-        
+        /* =========================================
+           4. MINI GAME (FIXED HIT AREA)
+           ========================================= */
         #game-section {
             position: fixed;
             top: 0;
@@ -250,12 +245,12 @@
 
         .heart-item {
             position: absolute;
-            font-size: 3rem; 
+            font-size: 3rem; /* Fix: Perbesar font agar mudah diklik */
             cursor: pointer;
             user-select: none;
             animation: fall linear forwards;
             filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
-            
+            /* Fix: Perbesar area klik */
             width: 60px; 
             height: 60px;
             display: flex;
@@ -289,7 +284,9 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        
+        /* =========================================
+           5. HERO SECTION
+           ========================================= */
         #hero-section {
             min-height: 100vh;
             display: flex;
@@ -337,7 +334,7 @@
             animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             z-index: 2;
-            background-color: #eee; 
+            background-color: #eee; /* Placeholder color */
         }
 
         @keyframes popIn {
@@ -362,7 +359,9 @@
             font-weight: 500;
         }
 
-        
+        /* =========================================
+           6. ALASAN (FLIP CARDS)
+           ========================================= */
         #reasons-section {
             padding: 60px 20px;
             max-width: 1200px;
@@ -451,7 +450,9 @@
             100% { transform: scale(2); opacity: 0; }
         }
 
-        
+        /* =========================================
+           7. GALERI KENANGAN
+           ========================================= */
         #gallery-section {
             padding: 60px 20px;
             background: var(--cream);
@@ -544,21 +545,23 @@
             user-select: none;
         }
 
-        
+        /* =========================================
+           8. SURAT RAHASIA (FIXED OVERFLOW & Z-INDEX)
+           ========================================= */
         #letter-section {
-            padding: 100px 20px; 
-            min-height: 100vh; 
+            padding: 100px 20px; /* Padding lebih besar untuk ruang surat keluar */
+            min-height: 100vh; /* Fix: Pastikan section cukup tinggi */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http:www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffd1dc' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffd1dc' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             position: relative; 
-            overflow: visible; 
+            overflow: visible; /* Fix: Biarkan surat bisa keluar dari box section */
         }
 
         .letter-overlay {
-            position: fixed; 
+            position: fixed; /* Fix: Gunakan Fixed agar cover seluruh layar */
             top: 0;
             left: 0;
             width: 100%;
@@ -594,7 +597,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        
+        /* badan amplop */
         .envelope::after {
             content: "";
             position: absolute;
@@ -604,7 +607,7 @@
             z-index: 2;
         }
 
-        
+        /* flap atas */
         .envelope::before {
             content: "";
             position: absolute;
@@ -626,7 +629,7 @@
             transform: rotateX(180deg);
         }
 
-        
+        /* surat */
         .letter-paper {
             position: absolute;
 
@@ -654,7 +657,7 @@
                 z-index .8s ease;
         }
 
-        
+        /* saat amplop dibuka */
 
 
         .envelope-text {
@@ -692,7 +695,9 @@
             text-align: center;
         }
 
-        
+        /* =========================================
+           9. PENUTUP & COUNTDOWN
+           ========================================= */
         #outro-section {
             background: #0f0c29;
             background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
@@ -770,7 +775,7 @@
 
         .final-msg {
             margin-top: 50px;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Dancing Script', cursive;
             font-size: 2.5rem;
             opacity: 0;
             transform: translateY(20px);
@@ -798,16 +803,18 @@
     </style>
 </head>
 <body class="noscroll">
-
+    <!-- ========================================= -->
+<!-- KODE TAMBAHAN MUSIC PLAYER (TEMPAT DI BAWAH <body>) -->
+<!-- ========================================= -->
 
 <style>
-    
+    /* CSS KHUSUS UNTUK MUSIC PLAYER (Tidak akan merusak CSS lama) */
     #music-intro-scene {
         position: fixed;
         top: 0; left: 0;
         width: 100vw; height: 100vh;
         background: #000;
-        z-index: 999999; 
+        z-index: 999999; /* Paling atas agar menutupi website lama */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -817,7 +824,7 @@
         transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    
+    /* Efek Vinyl/Glow Background */
     .music-bg-glow {
         position: absolute;
         width: 300px; height: 300px;
@@ -857,7 +864,7 @@
         margin-bottom: 40px;
     }
 
-    
+    /* Tombol Play Besar ala Referensi */
     .play-btn-circle {
         width: 80px; height: 80px;
         background: #1db954;
@@ -883,7 +890,7 @@
         border-top: 12px solid transparent;
         border-bottom: 12px solid transparent;
         border-left: 20px solid #fff;
-        margin-left: 5px; 
+        margin-left: 5px; /* Visual correction */
     }
 
     .progress-bar-container {
@@ -903,7 +910,7 @@
         transition: width 0.5s linear;
     }
 
-    
+    /* DYNAMIC ISLAND*/
     #dynamic-island {
         position: fixed;
         top: 20px;
@@ -950,18 +957,18 @@
     }
 </style>
 
-
-
+<!-- Audio Element -->
+<!-- GANTI SRC DENGAN LINK LAGU ANDA -->
 <audio id="bg-music" loop>
     <source src="songs/night-changes compressed (1).mp3" type="audio/mpeg">
 </audio>
 
-
+<!-- Scene Intro Musik -->
 <div id="music-intro-scene">
     <div class="music-bg-glow"></div>
     
     <div class="music-content">
-        
+        <!-- Ganti gambar background music-bg-glow jika perlu -->
         
         <p class="status-text">SEKARANG LAGI MEMUTAR</p>
         <p class="song-title-lg">Night Changes</p>
@@ -979,9 +986,9 @@
     </div>
 </div>
 
-
+<!-- Dynamic Island (Hidden awalnya) -->
 <div id="dynamic-island">
-    
+    <!-- Ganti URL gambar di bawah style dengan foto utama Anda -->
     <div class="island-cover" style="background-image: url('Foto/spotify02-1x1.jpg');" id="island-img"></div>
     <div class="island-info">
         <span class="island-title">Night Changes</span>
@@ -991,7 +998,8 @@
 </div>
 
 <script>
-
+    // LOGIKA JAVASCRIPT KHUSUS MUSIC PLAYER
+    // Kode ini akan berjalan otomatis tanpa mengganggu script lama Anda
 
     (function() {
         const scene = document.getElementById('music-intro-scene');
@@ -1002,10 +1010,14 @@
         const islandImg = document.getElementById('island-img');
         const islandBtn = document.querySelector('.island-btn');
 
- 
+        // 1. Sembunyikan website lama (index.txt) sementara
+        // Kita asumsikan website lama ada di dalam body, kita tempel overlay di atasnya.
+        // Kita perlu memastikan website lama tidak bisa diklik sampai lagu play.
+        // Tapi karena ini snippet, kita biarkan z-index overlay menutupinya.
 
         let isPlaying = false;
 
+        // Update progress bar
         audio.addEventListener('timeupdate', () => {
             const { currentTime, duration } = audio;
             if (duration) {
@@ -1014,28 +1026,28 @@
             }
         });
 
-  
+        // Fungsi Mainkan Musik & Transisi
         btnPlay.addEventListener('click', () => {
             if (isPlaying) return;
             isPlaying = true;
             initLoading();
             
-      
+            // Mainkan Lagu
             audio.play().catch(e => console.log("Audio play blocked by browser", e));
             
-    
+            // Ubah tombol jadi loading/sedang memutar
             btnPlay.innerHTML = '<div style="width:20px;height:20px;border:3px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite;"></div>';
             
-            
+            // Putar Island Cover
             islandImg.style.animationPlayState = 'running';
 
-          
+            // Tunggu sebentar (efek sinematik), lalu transisi
             setTimeout(() => {
                 transformToIsland();
-            }, 1500);  
+            }, 1500); // Delay 1.5 detik setelah play
         });
 
-  
+        // Toggle Play/Pause di Island
         island.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play();
@@ -1049,24 +1061,27 @@
         });
 
         function transformToIsland() {
-       
+            // 1. Animasi Scene Intro mengecil dan memudar
             scene.style.transform = 'scale(1) translateY(0px)';
             scene.style.opacity = '0';
 
-  
+            // 2. Munculkan Island di atas
             island.style.opacity = '1';
             island.style.transform = 'translateX(-50%) scale(1)';
 
+            // 3. Hapus Scene Intro setelah animasi selesai (agar tidak makan memori)
             setTimeout(() => {
                 scene.style.display = 'none';
-
+                
+                // DI SINI WEBSITE LAMA ANDA AKAN TERLIHAT KARENA OVERLAY SUDAH HILANG
+                // Loading Screen asli Anda yang ada di index.txt akan muncul otomatis di belakangnya.
                 
             }, 800);
         }
     })();
 </script>
 
-    
+    <!-- Loading Screen -->
     <div id="loading-screen">
         <p class="loading-text">Sebuah hadiah sedang dipersiapkan untukmu...</p>
         <div class="progress-bar">
@@ -1075,16 +1090,16 @@
         <div class="loading-icon">✨</div>
     </div>
 
-    
+    <!-- Intro Section -->
     <div id="intro-section" class="hidden">
         <div class="blur-bg"></div>
         <div class="intro-text-box" id="intro-text-container">
-            
+            <!-- Teks akan dimasukkan lewat JS -->
         </div>
         <button id="btn-intro-next" class="hidden">Lanjutkan</button>
     </div>
 
-    
+    <!-- Mini Game Section -->
     <div id="game-section" class="hidden">
         <div class="game-ui">
             <div id="score-display">0/18 ❤️</div>
@@ -1095,43 +1110,43 @@
         </div>
     </div>
 
-    
+    <!-- Konten Utama -->
     <main class="container hidden" id="main-content">
         
-        
+        <!-- Hero Section -->
         <section id="hero-section">
             <div class="hero-bg-particles" id="particles-container"></div>
             <img src="Foto/eca-bocil1x1.jpg" alt="Eca" class="hero-img">
             <div class="hero-text">
-                <h1 class="fade-in">Welcome to Chapter 18! 🎂</h1>
+                <h1 class="fade-in">Selamat Ulang Tahun ke-18 🎂</h1>
                 <p class="fade-in" style="animation-delay: 0.5s">Im sooo proud of youu bocilll</p>
             </div>
         </section>
 
-        
+        <!-- 18 Reasons Section -->
         <section id="reasons-section">
-            <h2 class="section-title">18 Reasons<br>You're Special</h2>
+            <h2 class="section-title">18 Alasan Kenapa Kamu Istimewa</h2>
             <div class="cards-grid" id="cards-container">
-                
+                <!-- Kartu akan digenerate via JS -->
             </div>
         </section>
 
-        
+        <!-- Gallery Section -->
         <section id="gallery-section">
-            <h2 class="section-title">Some of My Favorite Memories</h2>
+            <h2 class="section-title">Galeri Kenangan</h2>
             <div class="polaroid-grid" id="gallery-container">
-                
+                <!-- Foto akan digenerate via JS -->
             </div>
         </section>
 
-        
+        <!-- Secret Letter Section -->
         <section id="letter-section">
-            
+            <!-- Overlay Blur -->
             <div class="letter-overlay" id="letter-overlay"></div>
             
             <div class="envelope-container" id="envelope-trigger">
                 <div class="envelope" id="envelope">
-                    <div class="envelope-text">Open<br>when you're ready.</div>
+                    <div class="envelope-text">Buka saat kamu siap.</div>
                     <div class="letter-paper">
                         <div class="letter-content">
                             <h4>Untuk Eca...</h4>
@@ -1142,14 +1157,14 @@
             </div>
         </section>
 
-        
+        <!-- Outro Section -->
         <section id="outro-section">
             <div class="stars" id="stars-container"></div>
             <div class="outro-content">
-                <h1>Selamat Ulang Tahun ke-18 Bocil ❤️</h1>
-                <p>Selamat membuka chapter baru kehidupanmuu</p>
-                <p>Semoga di chapter ke-18 ini, apa yang kamu semogakan bisa terjadi yaa, Aminn! ✨</p>
-                <p>Makasii yaa udaa bertahan sejauh inii. Thank you for making this little world brighter</p>
+                <h1>Selamat Ulang Tahun ke-18 bocil❤️</h1>
+                <p>Welcome di chapter baru kehidupanmu</p>
+                <p>Sampai bertemu lagii di chapter ke-19 ✨</p>
+                <p>Makasii yaa udaa bertahan selama ini and thank you for making the world a little brighter</p>
 
                 <div class="countdown-box">
                     <div class="time-unit"><span class="time-val" id="days">00</span><span class="time-label">Hari</span></div>
@@ -1157,21 +1172,23 @@
                     <div class="time-unit"><span class="time-val" id="minutes">00</span><span class="time-label">Menit</span></div>
                     <div class="time-unit"><span class="time-val" id="seconds">00</span><span class="time-label">Detik</span></div>
                 </div>
-                <p style="font-size: 0.8rem; margin-top: 5px;">Menuju chapter ke-19</p>
+                <p style="font-size: 0.8rem; margin-top: 5px;">Menuju chapter ke-19✨</p>
 
-                <div class="final-msg" id="final-msg">Thank you for existing, Ecaa.</div>
+                <div class="final-msg" id="final-msg">Thank you for existing, beautiful soul.</div>
             </div>
         </section>
     </main>
 
-    
+    <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox">
         <span class="lightbox-close">&times;</span>
         <img src="" alt="Zoomed Photo" id="lightbox-img">
     </div>
 
     <script>
-
+        // =========================================
+        // DATA YANG BISA DIEDIT
+        // =========================================
         
         const introTexts = [
             "Hai, Bocill 😛",
@@ -1183,73 +1200,81 @@
         ];
 
         const reasons = [
-            "First of all, kamu ecaa bocil.",
+            "First of all, kamu bocil.",
             "Kamu relaa berkorban demi orang tersayangmu.",
             "Kamu tuu lembutt bangett, akuu sukaa.",
             "Hati kamu pure banget, langka banget dijaman sekarang..",
-            "Kamuu punya tujuan yang jelas, dan aku sukaa cara kamu mengusahakan hal-hal yang penting untukmu.",
-            "Cara kamuu ngeliat hal-hal kecil yang sering ngaa disadari orang lain.",
-            "Semangat kamuu yang gaa perna padamm, meski kadang jalan gaa semulus ituu.",
-            "Kamuu selalu berusaha ngasih yang terbaik, bahkan untuk sesuatu yang keliatan kecil.",
-            "Cara kamuu berpikir dewasa banget, sampe kadang akuu lupa umur kita nggaa beda jauh.",
-            "Sifat ucuu dan random kamuu",
+            "Ambisi kamuu besar, dan kamuu selalu berusaha apapun demi mewujudkan itu..",
+            "Caramu memperhatikan hal-hal kecil yang orang lain lewatkan.00",
+            "Semangatmu yang tak pernah padam mengejar mimpi.",
+            "Kamuu selalu berusaha give all the best untuk semuaa",
+            "Pemikiran yang dewasa banget sampe aku lupa umur kita ga beda jauh",
+            "Pemilihan kata-katamu yang manis dan efesien",
             "Cara kamu memandang jauhh kemasa depan",
-            "Kamu tau apa yang kamu mau, dan kamu ngaa gampang kebawa lingkungan di sekitarmu.",
-            "Semua usaha kerasmu selama ini untuk menjadi lebih baikk.",
-            "Keberanianmu untuk tetap melakukan hal yang positif meskipun kadang situasi ngaa mendukung.",
-            "Cara kamuu milih kata-kata yang selalu sederhana, tapi tajem bangett.",
+            "Kecerdasanmu yang datang bersama dengan kerendahan hati.00",
+            "Semua usaha kerasmu selama ini untuk menjadi lebih baik.",
+            "Keberanianmu untuk tetap melakukan hal yang positif.",
+            "Sifat lucu dan random yang membuat hidup lebih menyenangkan.",
             "Suara imut dan sopspoken ituu.",
-            "Kamu yang mestii mikirin orang lain melulu, padahal sebenernya kamuu juga harus dipikirin.",
-            "Pada akhirnya, alasan terbesarnya karena kamu itu Ecaa, dan itu aja udaa lebih dari cukup."
+            "Kamu yang selalu mikirin orang lain, padahal sebenernya kamu juga harus diprioritaskan.",
+            "Dan yang terakhir: Karena kamu adalah Eca, dirimu yang sebenarnya sudah lebih dari cukup."
         ];
 
         const galleryData = [
-            { url: "Foto/sebelum-ketemu.jpg", caption: "Sebelum first-meet kita ✨" },
-            { url: "Foto/berangkat-gerejaa.jpg", caption: "Kamu sebelum gereja 🎉" },
-            { url: "Foto/berangkat-school.jpg", caption: "Kamu utiwi ke sekolaa 🌆" },
-            { url: "Foto/pap-rapat01.jpg", caption: "Kamu yang sempetin waktu buat call waktu 'rapat' 🌟" },
-            { url: "Foto/bareface.png", caption: "Bareface kamuu 💖" },
+            { url: "Foto/sebelum-ketemu.jpg", caption: "Sebelum first-meet kita✨" },
+            { url: "Foto/berangkat-gerejaa.jpg", caption: "Kamu sebelum gereja🎉" },
+            { url: "Foto/berangkat-school.jpg", caption: "Kamu utiwi ke sekolaa🌆" },
+            { url: "Foto/pap-rapat.jpg", caption: "Kamu yang sempetin waktu buat call waktu rapat🌟" },
+            { url: "Foto/bareface.png", caption: "Bareface kamuu💖" },
             { url: "Foto/tantee-ecaa.jpg", caption: "Tecaaa 👸" }
         ];
 
-        const letterContent = `Haii Ecaa bocill ❤️
+        const letterContent = `Haii Ecaa bociel ❤️
         Ciee udaa 18 tahun nii
 
-        Aku bangga bangett tauu sama kamu. Bangga sama semua hal yang udah kamu lewati sampai hari inii, termasuk yang ga banyak orang ngerti.
+        Aku bangga sama kamu. Bangga sama semua hal yang udah kamu lewati sampai hari ini, termasuk hal-hal yang mungkin ga banyak orang tau.
+        Makasii yaa udaa terus berjalan sejauh ini.
 
 
         Scroll kebawah diks ⬇️
 
 
-        Tauu gaa? aku suka cara kamu memperjuangkan dan mempertahankan sesuatu yang kamu yakini, caraa kamu peduli sama orang lain, dan caraa kamu tetap jadi diri sendiri meskipun hidup ga selalu mudah.
+        Aku suka caraa kamu memperjuangkan apa yang kamu yakini, caraa kamu peduli sama orang lain, dan caraa kamu tetap jadi diri sendiri di tengah banyak hal yang berubah.
 
-        Aku tauu perjalanan kedepannya mungkin ga bakalan muluss. Tapi aku yakin, kalo itu kamu maka semua pasti baik-baik ajaa. 
-        Karena aku udaa ngeliat seberapa kuat, tulus, dan hebatnya kamuu. So, everything will be alright!
+        Aku tauu perjalanan ke depan mungkin ga akan selalu mudah, tapi kalau ada satu hal yang aku yakini, itu adalah kamu akan baik-baik aja. 
+        Karena selama ini aku selalu ngeliat seberapa kuat, tulus, dan hebatnya kamuu.
 
-        Jadii di umur yang baru ini, aku berharap kamu diberi banyak alasan buatt selalu tersenyum, diberi banyak hal untuk disyukuri, dan dapat kebahagiaan yang pantas buat kamu.
+        Jadii di umur yang baru ini, aku cuma berharap semogaa kamu selalu diberi banyak alasan untuk tersenyum, banyak hal baik untuk disyukuri, dan banyak kebahagiaan yang memang pantas kamu dapetin.
         
-        Teruslah jadi Ecaa yang aku kenal yaaa.
-        Eca yang baik hati, pekerja keras, dan Eca yang gapernaa mauu nyerahh.
+        Teruslah jadi Eca yang aku kenal.
+        Eca yang baik hati, pekerja keras, dan selalu ngasi yang terbaik untuk orang-orang di sekitarnya.
 
         Dan terakhir...
 
         Makasii yaa udaa bertahan selama inii.
 
-
-        And thank you for making this little world more beautiful. ❤️
-
+        And thank you for making the world a little more beautiful. ❤️
 
 
 
+        Oh yaa...
 
-        Tap lagi yaa untuk close inii..
-        Dibawah masii ada lagii tuuu👀✨
+
+        adaa message dibawah yaa, kodenya angka yang kamu anggap "special"
+        yang kamu disuruh milih angka itu lohh, inget kan? 
+        
+        go ahead.
+        
+        👀✨
 `;
+        // =========================================
+        // LOGIC JAVASCRIPT
+        // =========================================
 
         document.addEventListener('DOMContentLoaded', () => {
         });
 
-        
+        /* --- 1. Loading Screen Logic --- */
         function initLoading() {
             const fill = document.getElementById('progress-fill');
             const loadingScreen = document.getElementById('loading-screen');
@@ -1272,7 +1297,7 @@
             }, 100);
         }
 
-        
+        /* --- 2. Intro Sequence Logic --- */
         let introIndex = 0;
         function startIntroSequence() {
             introIndex = 0;
@@ -1313,7 +1338,7 @@
             });
         }
 
-        
+        /* --- 3. Mini Game Logic --- */
         let score = 0;
         const targetScore = 18;
         let gameInterval;
@@ -1330,13 +1355,13 @@
             const heart = document.createElement('div');
             heart.classList.add('heart-item');
             heart.innerHTML = '❤️';
-            const leftPos = Math.random() * 85 + 5; 
+            const leftPos = Math.random() * 85 + 5; // Fix: Jangan terlalu pinggir
             heart.style.left = leftPos + '%';
-            heart.style.top = '-60px'; 
+            heart.style.top = '-60px'; // Fix: Mulai dari atas layar
             const duration = Math.random() * 2 + 2; 
             heart.style.animationDuration = duration + 's';
 
-
+            // Fix: Gunakan touchstart agar lebih responsif di HP
             heart.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 catchHeart(heart);
@@ -1385,7 +1410,7 @@
             const subMsg = document.getElementById('game-sub-msg');
             gameMsg.classList.remove('hidden');
             setTimeout(() => {
-                subMsg.innerHTML = "You made it! 🎉";
+                subMsg.innerHTML = "You made it.<br>Welcome to chapter 18.";
                 subMsg.classList.add('fade-in');
             }, 2000);
 
@@ -1398,13 +1423,13 @@
             }, 5000);
         }
 
-        
+        /* --- 4. Main Content Logic --- */
         function showMainContent() {
             const mainContent = document.getElementById('main-content');
             mainContent.classList.remove('hidden');
             mainContent.classList.add('fade-in');
             
-
+            // Fix: Aktifkan scroll body
             document.body.classList.remove('noscroll');
             
             initParticles();
@@ -1415,7 +1440,7 @@
             window.scrollTo(0,0);
         }
 
-        
+        /* --- Particles Hero --- */
         function initParticles() {
             const container = document.getElementById('particles-container');
             for(let i=0; i<30; i++) {
@@ -1430,7 +1455,7 @@
             }
         }
 
-        
+        /* --- Reason Cards --- */
         function initReasons() {
             const container = document.getElementById('cards-container');
             reasons.forEach((text, index) => {
@@ -1439,7 +1464,7 @@
                 card.innerHTML = `
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <h3>Reason #${index + 1}</h3>
+                            <h3>Alasan #${index + 1}</h3>
                             <p style="margin-top:10px; color:#999;">(Ketuk untuk buka)</p>
                         </div>
                         <div class="flip-card-back">
@@ -1469,7 +1494,7 @@
             }
         }
 
-        
+        /* --- Gallery --- */
         function initGallery() {
             const container = document.getElementById('gallery-container');
             const lightbox = document.getElementById('lightbox');
@@ -1496,7 +1521,7 @@
             });
         }
 
-        
+        /* --- Letter Logic --- */
         function initLetter() {
             const trigger = document.getElementById('envelope-trigger');
             const overlay = document.getElementById('letter-overlay');
@@ -1554,7 +1579,7 @@
             });
         }
 
-        
+        /* --- Outro & Countdown --- */
         function initOutro() {
             const starContainer = document.getElementById('stars-container');
             for(let i=0; i<50; i++) {
@@ -1583,6 +1608,7 @@
             
             observer.observe(outroSection);
 
+            // Countdown menuju ulang tahun ke-19 (20 Juni 2027)
             const targetDate = new Date("2027-06-20T00:00:00");
 
             setInterval(() => {
